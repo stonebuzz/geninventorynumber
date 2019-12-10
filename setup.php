@@ -54,7 +54,7 @@ function plugin_init_geninventorynumber() {
    $plugin = new Plugin();
    if ($plugin->isInstalled('geninventorynumber')
       && $plugin->isActivated('geninventorynumber')
-      && (Session::haveRight("config", CREATE))) {
+      && (Session::haveRight("config", UPDATE))) {
       $PLUGIN_HOOKS['use_massive_action']['geninventorynumber'] = 1;
 
       Plugin::registerClass('PluginGeninventorynumberProfile',
@@ -62,10 +62,9 @@ function plugin_init_geninventorynumber() {
       Plugin::registerClass('PluginGeninventorynumberConfig');
       Plugin::registerClass('PluginGeninventorynumberConfigField');
 
-      if (Session::haveRight('config', UPDATE)) {
-         $PLUGIN_HOOKS["menu_toadd"]['geninventorynumber']
+      $PLUGIN_HOOKS["menu_toadd"]['geninventorynumber']
             = ['tools' => 'PluginGeninventorynumberConfig'];
-      }
+
    }
 }
 
